@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Only You ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top, #ffd6e5, #ffafcc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.card {
+  background: #fff0f6;
+  width: 94%;
+  max-width: 420px;
+  padding: 26px 22px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(255,79,135,0.35);
+}
+
+.hidden { display: none; }
+
+h2 {
+  font-size: 26px;
+  color: #ff4f87;
+}
+
+.media {
+  width: 180px;
+  margin: 18px auto;
+}
+
+.media img {
+  width: 100%;
+  border-radius: 18px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+button {
+  padding: 14px 28px;
+  border-radius: 30px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.yes {
+  background: #ff4f87;
+  color: white;
+}
+
+.no {
+  background: #f1f1f1;
+}
+
+.retry {
+  background: #ff4f87;
+  color: white;
+  margin-top: 14px;
+}
+
+.final-img {
+  width: 190px;
+  margin-top: 12px;
+  border-radius: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="card" id="page1">
+  <h2>Ready for 7 days of love? 💕</h2>
+  <div class="media">
+    <img src="https://media.tenor.com/5hNFjHWQYKQAAAAj/bubu-dudu-sseeyall.gif">
+  </div>
+  <div class="buttons">
+    <button class="yes" id="yes1" onclick="goValentine()">YES</button>
+    <button class="no" onclick="noPage1()">NO</button>
+  </div>
+</div>
+
+<!-- MESSAGE PAGE -->
+<div class="card hidden" id="message">
+  <h2 id="messageText"></h2>
+  <div class="media">
+    <img src="https://media.tenor.com/zU6eOLvp_9EAAAAi/sad.gif">
+  </div>
+  <button class="retry" onclick="backToPage1()">Try Again</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="card hidden" id="page2">
+  <h2>Will you be my Valentine? 💖</h2>
+  <div class="media">
+    <img src="https://media.tenor.com/5hNFjHWQYKQAAAAj/bubu-dudu-sseeyall.gif">
+  </div>
+  <div class="buttons">
+    <button class="yes" id="yes2" onclick="goFinal()">YES</button>
+    <button class="no" onclick="noPage2()">NO</button>
+  </div>
+</div>
+
+<!-- FINAL -->
+<div class="card hidden" id="final">
+  <h2>Unfortunately 😌💘</h2>
+  <div class="media">
+    <img src="https://media.tenor.com/x9NDP4s0PigAAAAi/peach-cat-peachy.gif">
+  </div>
+  <p>
+    You have only one option…<br>
+    <strong>That’s ME 😎❤️</strong><br><br>
+    Lobb youu babyyy 😘
+  </p>
+  <img class="final-img" src="love.jpg">
+</div>
+
+<script>
+let noCountPage1 = 0;
+let yes1Size = 1;
+let yes2Size = 1;
+
+/* PAGE 1 NO LOGIC */
+function noPage1() {
+  noCountPage1++;
+
+  if (noCountPage1 === 1) {
+    showMessage("Why did you click no? 🥺");
+  } 
+  else if (noCountPage1 === 2) {
+    showMessage("You will not click YES? 😏💖<br>Let me handle this…");
+  } 
+  else {
+    yes1Size += 0.25;
+    document.getElementById("yes1").style.transform = `scale(${yes1Size})`;
+  }
+}
+
+/* SHOW MESSAGE PAGE */
+function showMessage(text) {
+  document.getElementById("messageText").innerHTML = text;
+  page1.classList.add("hidden");
+  message.classList.remove("hidden");
+}
+
+/* BACK TO PAGE 1 */
+function backToPage1() {
+  message.classList.add("hidden");
+  page1.classList.remove("hidden");
+}
+
+/* GO TO PAGE 2 */
+function goValentine() {
+  page1.classList.add("hidden");
+  page2.classList.remove("hidden");
+
+  yes2Size = 1;
+  document.getElementById("yes2").style.transform = "scale(1)";
+}
+
+/* PAGE 2 NO LOGIC */
+function noPage2() {
+  yes2Size += 0.25;
+  document.getElementById("yes2").style.transform = `scale(${yes2Size})`;
+}
+
+/* FINAL */
+function goFinal() {
+  page2.classList.add("hidden");
+  final.classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
